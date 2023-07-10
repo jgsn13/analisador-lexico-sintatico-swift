@@ -1,7 +1,7 @@
 import fs from "fs";
 import { extractLexemes } from "./lexeme";
 import { lookup } from "./token";
-import { logTree } from './tree';
+import { logTree } from "./tree";
 
 /**
  * Reads a file and returns its contents as a string.

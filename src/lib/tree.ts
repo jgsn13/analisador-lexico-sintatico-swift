@@ -17,41 +17,55 @@ function parse(tokens: string[]): TreeNode {
     const token = tokens[index];
 
     // NOTE: check if token is an identifier
-    if (token.startsWith('IDENTIFIER(')) {
+    if (token.startsWith("IDENTIFIER(")) {
       index++;
-      return { type: 'identifier', value: token.slice(11, -1) };
+      return { type: "identifier", value: token.slice(11, -1) };
     }
 
     // NOTE: check if token is an integer
-    if (token.startsWith('INTEGER(')) {
+    if (token.startsWith("INTEGER(")) {
       index++;
-      return { type: 'integer', value: parseInt(token.slice(8, -1)) };
+      return { type: "integer", value: parseInt(token.slice(8, -1)) };
     }
 
     // NOTE: check if token is a string
     if (token.startsWith('STRING("') && token.endsWith('")')) {
       index++;
-      return { type: 'string', value: token.slice(8, -2) };
+      return { type: "string", value: token.slice(8, -2) };
     }
 
     // NOTE: check if token is a keyword or operator
-    if (token === 'LET' || token === 'ASSIGN' || token === 'PLUS' || token === 'MINUS' || token === 'MULTIPLY' || token === 'DIVIDE') {
+    if (
+      token === "LET" ||
+      token === "ASSIGN" ||
+      token === "PLUS" ||
+      token === "MINUS" ||
+      token === "MULTIPLY" ||
+      token === "DIVIDE"
+    ) {
       index++;
       return { type: token.toLowerCase() };
     }
 
     // NOTE: check if token is a punctuation
-    if (token === 'LEFT_PAREN' || token === 'RIGHT_PAREN' || token === 'COMMA' || token === 'COLON' || token === 'QUESTION_MARK' || token === 'PERIOD') {
+    if (
+      token === "LEFT_PAREN" ||
+      token === "RIGHT_PAREN" ||
+      token === "COMMA" ||
+      token === "COLON" ||
+      token === "QUESTION_MARK" ||
+      token === "PERIOD"
+    ) {
       index++;
     }
 
     // NOTE: check if token is the start of an array
-    if (token === '[') {
+    if (token === "[") {
       index++;
-      const node: TreeNode = { type: 'array', children: [] };
+      const node: TreeNode = { type: "array", children: [] };
 
       // NOTE: process the elements inside the array
-      while (tokens[index] !== ']') {
+      while (tokens[index] !== "]") {
         const element = walk();
         if (element) {
           node.children?.push(element);
@@ -65,7 +79,7 @@ function parse(tokens: string[]): TreeNode {
     return undefined;
   }
 
-  const rootTreeNode: TreeNode = { type: 'program', children: [] };
+  const rootTreeNode: TreeNode = { type: "program", children: [] };
 
   // NOTE: process each statement in the token array
   while (index < tokens.length) {
