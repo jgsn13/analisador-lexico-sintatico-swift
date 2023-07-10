@@ -1,0 +1,15 @@
+{
+  "name": "analisador-lexico-sintatico-swift",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joaquim Gregório da Silva Neto <joaquim.ibi@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsx src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.1",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
+  }
+}
